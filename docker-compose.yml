@@ -6,12 +6,12 @@ services:
     container_name: romm
     restart: unless-stopped
     environment:
-      DB_NAME: 'romm_user'        # 确保与 MariaDB 中的数据库名一致
-      DB_USER: 'romm_user'        # 数据库用户名
-      DB_PASSWD: 'romm_password'  # 数据库密码
+      DB_NAME: 'user'        # 确保与 MariaDB 中的数据库名一致
+      DB_USER: 'user'        # 数据库用户名
+      DB_PASSWD: 'password'  # 数据库密码
       DB_HOST: '172.17.0.1'       # 使用宿主机 Docker 网关 IP（或实际 MariaDB IP）
-      DB_PORT: '3307'             # 显式指定端口（若 MariaDB 使用非默认端口）
-      ROMM_AUTH_SECRET_KEY: 'ed96c6055496accfe34ffff692731b5b0ae62365244797ffb7a2591278593f49' # 通过 openssl rand -hex 32 生成
+      DB_PORT: '3306'             # 显式指定端口（若 MariaDB 使用非默认端口）
+      ROMM_AUTH_SECRET_KEY: 'ed26c6055496sccfe34ffff695531b5b0ae62365244797ffb7a2591278593f49' # 通过 openssl rand -hex 32 生成
 #      IGDB_CLIENT_ID:   ''          # 在 IGDB 注册应用以获取 ID 和 SECRET
 #      IGDB_CLIENT_SECRET:  ''       # https://api-docs.igdb.com/#account-creation
 #      MOBYGAMES_API_KEY:  ''        # https://www.mobygames.com/info/api/
@@ -35,14 +35,14 @@ services:
     container_name: mariadb
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: 'romm_user'
-      MYSQL_USER: 'romm_user'
-      MYSQL_PASSWORD: 'romm_password'
-      MYSQL_ROOT_PASSWORD: 'your_root_password'
+      MYSQL_DATABASE: 'user'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
     volumes:
       - './mariadb/data:/var/lib/mysql'
     ports:
-      - '3307:3306'
+      - '3306:3306'
     networks:
       - default
     healthcheck:
